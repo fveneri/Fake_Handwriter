@@ -48,17 +48,19 @@ ui <- navbarPage(
         <p>CSAFE researcher  develop a tool that can decompose writing into graphs</p>
       <p>That can be used to creat writership profiles</p>"),
       imageOutput("Profile"),
-      HTML("<p>The closer the profile is to the crime scene the more likely we have found the correct suspect</p>")
+      HTML("<p>The closer the profile is to the crime scene the more likely we have found the correct suspect</p>,
+           Can you already guess the culprit?</p>")
             
       )),
   tabPanel(
     "CSAFE-Tools II",
     fluidPage(
       HTML("<h3>Using extra tools</h3>
-        <p>Even the profiles can be hard to read</p>
+        <p>Even the writership profiles can be hard to read</p>
         <p>That is why we compute the euclidean distance</p>"),
       imageOutput("Final"),
-      HTML("<p>The smaller the distance more likely it that we have found the correct suspect</p>")
+      HTML("<p>The smaller the distance more likely it that we have found the correct suspect</p>
+           <p>Writer 1 is the CATBurglar</p>")
     ))
   
   )
@@ -124,7 +126,7 @@ server <- function(input, output) {
     list(
       src = Profile$ref,
       contentType = 'image/png',
-      width = "40%"#,  # Adjust width here
+      width = "60%"#,  # Adjust width here
       #  height = "80%"  # Adjust height here
     )
   }, deleteFile = FALSE) 
@@ -133,7 +135,7 @@ server <- function(input, output) {
     list(
       src = Final$ref,
       contentType = 'image/png',
-      width = "40%"#,  # Adjust width here
+      width = "60%"#,  # Adjust width here
       #  height = "80%"  # Adjust height here
     )
   }, deleteFile = FALSE) 
@@ -159,16 +161,16 @@ server <- function(input, output) {
     }
   }, deleteFile = FALSE) 
   
-  output$display_Data <- renderImage({
-    if (!is.null(selected_alternative$alt)) {
-      list(
-        src = selected_alternativeData$alt,
-        contentType = 'image/png',
-        width = "30%",  # Adjust width here
-        height = "30%"  # Adjust height here
-      )
-    }
-  }, deleteFile = FALSE) 
+  # output$display_Data <- renderImage({
+  #   if (!is.null(selected_alternative$alt)) {
+  #     list(
+  #       src = selected_alternativeData$alt,
+  #       contentType = 'image/png',
+  #       width = "30%",  # Adjust width here
+  #       height = "30%"  # Adjust height here
+  #     )
+  #   }
+  # }, deleteFile = FALSE) 
   
   # Print some text 
   output$selected_reference <- renderPrint({
