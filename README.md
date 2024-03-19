@@ -1,1 +1,1 @@
-This is a simple UI for a demo
+This is a simple UI for a demo.
